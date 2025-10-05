@@ -1,0 +1,143 @@
+:root {
+  --hero-bg-light: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  --hero-bg-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+.hero-bg {
+    background: var(--hero-bg-light);
+    color: white;
+}
+.dark .hero-bg {
+    background: var(--hero-bg-dark);
+}
+
+/* Scroll Animations */
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-animate.fade-in-up {
+    transform: translateY(30px);
+}
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Marquee Animation */
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+}
+.marquee-content {
+    display: flex;
+    align-items: center;
+    animation: marquee 40s linear infinite;
+    gap: 6rem;
+}
+.marquee-content.reverse {
+    animation-name: marquee-reverse;
+}
+
+.marquee-logo {
+    height: 3rem; /* Increased logo size */
+    max-width: 10rem;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.marquee-logo:hover {
+    transform: scale(1.1);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Form Styles */
+.form-input {
+    @apply mt-1 block w-full px-3 py-2 bg-white dark:bg-brand-dark border border-slate-300 dark:border-slate-600 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-purple focus:border-brand-purple;
+}
+
+.form-radio {
+    @apply h-4 w-4 text-brand-purple border-slate-300 dark:border-slate-600 bg-white dark:bg-brand-dark focus:ring-brand-purple focus:ring-offset-0 dark:focus:ring-offset-brand-light;
+}
+
+.contact-form-input {
+    @apply w-full bg-transparent border-0 border-b-2 border-slate-300 dark:border-slate-600 rounded-none py-3 px-1 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-brand-purple transition-colors;
+}
+
+.contact-form-input:-webkit-autofill,
+.contact-form-input:-webkit-autofill:hover,
+.contact-form-input:-webkit-autofill:focus,
+.contact-form-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important; /* Light mode bg-white */
+    -webkit-text-fill-color: #0f172a !important;
+}
+
+.dark .contact-form-input:-webkit-autofill,
+.dark .contact-form-input:-webkit-autofill:hover,
+.dark .contact-form-input:-webkit-autofill:focus,
+.dark .contact-form-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #0f172a inset !important; /* Dark mode bg-brand-dark */
+    -webkit-text-fill-color: #e2e8f0 !important;
+}
+
+/* Process Section */
+.process-step {
+  cursor: pointer;
+}
+.process-step .process-step-circle {
+  border: 2px solid #cbd5e1; /* slate-300 */
+  background-color: white;
+  color: #475569; /* slate-600 */
+  transition: all 0.4s ease-in-out;
+}
+.dark .process-step .process-step-circle {
+  border-color: #475569; /* slate-600 */
+  background-color: #1e293b; /* brand-light */
+}
+.process-step.active .process-step-circle {
+  background-color: #8B5CF6; /* brand-purple */
+  border-color: #8B5CF6;
+  color: white;
+  transform: scale(1.1);
+}
+
+.process-line-progress {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
+}
+.process-line-progress.active {
+  transform: scaleX(1);
+}
+
+.process-card {
+  cursor: pointer;
+  transition: transform 0.4s ease-out;
+}
+.process-card .process-card-content {
+    transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+.process-card.active {
+  transform: scale(1.05);
+}
+.process-card.active .process-card-content {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+}
